@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.constant.ErrorMessageConst;
+import com.example.demo.constant.MessageConst;
 import com.example.demo.form.SigninForm;
 import com.example.demo.service.SigninService;
 import com.example.demo.util.AppUtil;
@@ -55,7 +55,7 @@ public class SigninController {
 			return "redirect:/admin/contacts";
 			
 		} else {
-			var errorMsg = AppUtil.getMessage(messageSource, ErrorMessageConst.SIGNIN_WRONG_INPUT);
+			var errorMsg = AppUtil.getMessage(messageSource, MessageConst.SIGNIN_WRONG_INPUT);
 			model.addAttribute("errorMsg", errorMsg);
 			return "signin";
 		}
