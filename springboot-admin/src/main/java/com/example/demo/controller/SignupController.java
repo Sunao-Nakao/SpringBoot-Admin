@@ -9,9 +9,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.constant.SignupMessage;
+import com.example.demo.constant.UrlConst;
 import com.example.demo.entity.Admins;
 import com.example.demo.form.SignupForm;
 import com.example.demo.service.SignupService;
@@ -22,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 /** サインアップ画面 Controller **/
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/admin")
+//@RequestMapping("/admin")
 public class SignupController {
 	
 	/**サインアップ service**/
@@ -37,7 +38,7 @@ public class SignupController {
 	 * @param form 入力情報
 	 * @return 表示画面
 	 */
-	@GetMapping("/signup")
+	@GetMapping(UrlConst.SIGNUP)
 	public String view(Model model, SignupForm form) {
 		return "signup";
 	}
@@ -47,7 +48,7 @@ public class SignupController {
 	 * @param bdResult 入力チェック結果
 	 * @return 表示画面
 	 */
-	@PostMapping("/signup")
+	@PostMapping(UrlConst.SIGNUP)
 	public  String signup(Model model,@Validated SignupForm form, BindingResult bdResult) {
 		if(bdResult.hasErrors()) {
 			return "signup";
