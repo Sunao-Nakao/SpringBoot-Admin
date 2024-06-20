@@ -12,7 +12,7 @@ public class MessageConst {
 	public static final String SIGNUP_EXISTED_EMAIL = "signup.existedEmail";
 	
 /** サインアップ画面：管理者登録完了 **/
-	public static final String SIGNUP_RESIST_SUCCED = "signup.resistSucceed";
+	public static final String SIGNUP_RESIST_SUCCEED = "signup.resistSucceed";
 	
 	
 }
