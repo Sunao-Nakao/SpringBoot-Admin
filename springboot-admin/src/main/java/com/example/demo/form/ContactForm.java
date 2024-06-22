@@ -1,28 +1,19 @@
-package com.example.demo.entity;
+package com.example.demo.form;
+
+import java.io.Serializable;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-
-/** ユーザー情報テーブル Entity **/
-@Entity
-@Table(name = "contacts")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class Contacts {
+public class ContactForm implements Serializable{
 	
 	/** お問い合わせID **/
 	@Id
-	@Column(name = "id")
 	private Long id;
 	
 	/** 姓 **/
@@ -47,6 +38,7 @@ public class Contacts {
 	private String zipCode;
 	
 	/** 住所 **/
+	@Column(name = "address")
 	private String address;
 	
 	/** 建物名 **/
@@ -58,6 +50,7 @@ public class Contacts {
 	private String contactType;
 
 	/** 内容 **/
+	@Column(name = "body")
 	private String body;
 	
 	/** 作成日時 **/
@@ -68,4 +61,5 @@ public class Contacts {
 	@Column(name = "updated_at")
 	private String updatedAt;
 	
+
 }

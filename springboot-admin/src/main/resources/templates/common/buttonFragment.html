@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	
+	<!-- 編集ボタン -->
+	<a th:href="@{|/admin/contacts/${contact.id}/edit|}" class="btn btn-primary btn-sm" th:fragment="edit">編集</a>
+
+	<!-- 更新ボタン -->
+	<form th:action="@{|/admin/contacts/${contact.id}|}" method="post" th:fragment="update">    
+		<button type="submit" class="btn btn-primary btn-sm">更新</button>
+	</form>
+		
+	<!-- 削除ボタン -->
+	<form th:action="@{/admin/contacts/{contact.id}/delete/(contact.id=${contact.id})}" method="post" th:fragment="delete">
+		<button type="submit" class="btn btn-danger btn-sm">削除</button>
+	</form>
+	
+	<!-- 戻るボタン -->
+		<div th:fragment="backButton">
+		    <button type="button" onclick="history.back()" class="btn btn-primary btn-sm">戻る</button>
+		</div>
+		
+	<!-- お問合せ詳細へ戻るボタン -->
+		<a th:href="@{|/admin/contacts|}" class="btn btn-primary btn-sm" th:fragment="backContact">戻る</a>	
+		
+		
+	<!-- お問合せ詳細へ戻るボタン -->
+		<a th:href="@{|/admin/contacts/${contact.id}|}" class="btn btn-primary btn-sm" th:fragment="backContactId">戻る</a>	
+		
+
+	<!-- サインアウトボタン -->
+		<form th:action="@{/logout}" method="post" th:fragment="signout">
+			<input type="submit" class=" btn btn-outline-primary" value="サインアウト">
+		</form>
+	
+</body>
+</html>

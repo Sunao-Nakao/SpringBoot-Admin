@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+ <html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form>
+		<div class="container">
+			<hr>
+			<h1 class="my-2">お問合せ一覧</h1>
+			<table class="table table-bordered table-striped">
+				<tr>
+					<th>お問い合わせID</th>
+					<td th:text="${contact.id}">ID</td>
+				</tr>
+				<tr>
+					<th>姓</th>
+					<td th:text="${contact.lastName}">Last Name</td>
+				</tr>
+				<tr>
+					<th>名</th>
+					<td th:text="${contact.firstName}">First Name</td>
+				</tr>
+				<tr>
+					<th>メールアドレス</th>
+					<td th:text="${contact.email}">Email</td>
+				</tr>	
+				<tr>
+					<th>電話番号</th>
+					<td th:text="${contact.phone}">Phone</td>
+				</tr>	
+				<tr>
+					<th>郵便番号</th>
+					<td th:text="${contact.zipCode}">ZipCode</td>
+				</tr>	
+				<tr>							
+					<th>住所</th>
+					<td th:text="${contact.address}">Address</td>
+				</tr>	
+				<tr>							
+					<th>建物名</th>
+					<td th:text="${contact.buildingName}">BuildingName</td>
+				</tr>	
+				<tr>							
+					<th>お問い合わせ種別</th>
+					<td th:text="${contact.contactType}">Contact Type</td>
+				</tr>	
+				<tr>							
+					<th>内容</th>
+					<td th:text="${contact.body}">Body</td>
+				</tr>	
+				<tr>
+					<th>作成日時</th>
+					<td th:text="${contact.createdAt}">Created At</td>
+				</tr>	
+				<tr>
+					<th>更新日時</th>
+					<td th:text="${contact.updatedAt}">Updated At</td>
+				</tr>	
+			</table>
+			
+			<div class="container">
+				<div class="row">
+			    	<div class="col-1">
+						<div th:insert="common/sourceList::sourceList"></div>
+						<div th:replace="common/buttonFragment::edit"></div>	
+			   		 </div>
+					<div class="col-10"></div>
+					<div class="col-1">
+						<div th:insert="common/sourceList::sourceList"></div>
+						<div th:replace="common/buttonFragment::backContact"></div>			
+					</div>
+				</div>
+			</div>	
+		</div>
+	</form>
+	
+	<div class="container">
+		<div class="d-flex justify-content-end my-5">
+			<div th:insert="common/sourceList::sourceList"></div>
+			<div th:replace="common/buttonFragment::signout"></div>
+		</div>
+	</div>
+
+</body>
+</html>

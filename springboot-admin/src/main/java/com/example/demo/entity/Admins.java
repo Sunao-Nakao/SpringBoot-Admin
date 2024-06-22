@@ -14,8 +14,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Admins {
 	
+	/** 姓 **/
 	private String lastName;
 	
+	/** 名 **/
 	private String firstName;
 	
 	/** サインインID Email **/

@@ -15,6 +15,8 @@ import com.example.demo.constant.UrlConst;
 
 import lombok.RequiredArgsConstructor;
 
+
+/** Spring Security Webセキュリティ設定クラス **/
 @EnableWebSecurity
 @Configuration
 @RequiredArgsConstructor
@@ -32,7 +34,11 @@ public class WebSecurityConfig {
 	/** ユーザー名のname属性 **/
 	private final String USRANAME_PARAMETER = "email";
 	
-	
+	/** セキュリティフィルターチェーンの設定 **
+	 * @param http HttpSecurityの設定オブジェクト
+	 * @return 設定されたSecurityFilterChain
+	 * @throws Exception 設定中にエラーが発生した場合
+	 */
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http)throws Exception {
 		
@@ -52,10 +58,9 @@ public class WebSecurityConfig {
 	}
 	
 	
-	/** Provider定義 ** 
-	 * ＠return カスタマイズProvider情報
+	/** DaoAuthenticationProvider設定 **
+	 * @return カスタマイズされたDaoAuthenticationProvider
 	 */
-	
 	@Bean
 	AuthenticationProvider daoAuthenticationProvider() {
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
