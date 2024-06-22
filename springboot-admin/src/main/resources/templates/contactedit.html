@@ -3,14 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>お問い合わせ編集</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-	<h2>お問い合わせ編集</h2>
-	
-	<form th:action="@{|/admin/contacts/${contact.id}|}" method="post">	
+	<form id="contactForm" th:action="@{|/admin/contacts/${contact.id}|}" method="post">	
 		<div class="container">
 			<hr>
-			<h1 class="my-2">お問合せ一覧</h1>
+			<h2 class="my-2">お問い合わせ編集</h2>
 			<table class="table table-bordered table-striped">
 				<tr>
 					<th>お問い合わせID</th>
@@ -63,28 +62,60 @@
 			</table>
 			
 			<div class="container">
-			  <div class="row">
-			    <div class="col-1">
-					<div th:insert="common/sourceList::sourceList"></div>
-					<div th:replace="common/buttonFragment::update"></div>
-			    </div>
-			    <div class="col-1">
-					<div th:insert="common/sourceList::sourceList"></div>
-					<div th:replace="common/buttonFragment::delete"></div>
-			    </div>
-			    <div class="col-9">
-			    </div>
-				<div class="col-1">
-					<div th:insert="common/sourceList::sourceList"></div>
-					<div th:replace="common/buttonFragment::backContactId"></div>			
-				</div>
-			 </div>
-		</div>		
+                <div class="row">
+                    <div class="col-1">
+                        <div th:insert="common/sourceList::sourceList"></div>
+                        <button id="updateButton" class="btn btn-primary btn-sm">更新</button>
+                    </div>
+                    <div class="col-1">
+                        <div th:insert="common/sourceList::sourceList"></div>
+                        <button id="deleteButton" class="btn btn-danger btn-sm">削除</button>
+                    </div>
+                    <div class="col-9"></div>
+                    <div class="col-1">
+                        <div th:insert="common/sourceList::sourceList"></div>
+                        <div th:replace="common/buttonFragment::backContactId"></div>
+	                </div>
+                </div>
+            </div>
+        </div>
 	</form>
-	<div class="d-flex justify-content-end my-5">
-		<div th:insert="common/sourceList::sourceList"></div>
-		<div th:replace="common/buttonFragment::signout"></div>
-	</div>								
+	<div class="container">
+		<div class="d-flex justify-content-end my-5">
+			<div th:insert="common/sourceList::sourceList"></div>
+			<div th:replace="common/buttonFragment::signout"></div>
+		</div>
+	</div>	
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+	<script>
+	    $(document).ready(function() {
+	        $('#updateButton').click(function(event) {
+	            event.preventDefault();
+	            if (confirm('更新しますか？')) {
+	                $('#contactForm').submit();
+	            }
+	        });
+	    });
+	</script>
+	
+	<script th:inline="javascript">
+	    $(document).ready(function() {
+	        $('#deleteButton').click(function(event) {
+	            event.preventDefault();
+	            if (confirm('削除しますか？')) {
+	                var form = $('#contactForm');
+	                var deleteUrl = /*[[ @{/admin/contacts/{id}/delete(id=${contact.id})} ]]*/ '';
+	                deleteUrl = deleteUrl.replace('{id}', /*[[ ${contact.id} ]]*/ '');
+	                form.attr('action', deleteUrl);
+	                form.submit();
+	            }
+	        });
+	    });
+	</script>
 
 </body>
 </html>

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.example.demo.entity.Contacts;
 import com.example.demo.repository.ContactsRepository;
 
+import jakarta.transaction.Transactional;
+
 
 
 /** コンタクトサービスクラス **/
@@ -37,17 +39,18 @@ public class ContactService {
         return contactsRepository.findAll();
     }
 
-    //ポイント①
+    
     public void insert(Contacts contact) {
     	contactsRepository.save(contact);
     }
 
-    //ポイント②
+    
     public void update(Contacts contact) {
     	contactsRepository.save(contact);
     }
 
-    //ポイント③
+   
+    @Transactional
     public void delete(Long id) {
     	contactsRepository.deleteById(id);
     }

@@ -4,16 +4,6 @@
 	
 	<!-- 編集ボタン -->
 	<a th:href="@{|/admin/contacts/${contact.id}/edit|}" class="btn btn-primary btn-sm" th:fragment="edit">編集</a>
-
-	<!-- 更新ボタン -->
-	<form th:action="@{|/admin/contacts/${contact.id}|}" method="post" th:fragment="update">    
-		<button type="submit" class="btn btn-primary btn-sm">更新</button>
-	</form>
-		
-	<!-- 削除ボタン -->
-	<form th:action="@{/admin/contacts/{contact.id}/delete/(contact.id=${contact.id})}" method="post" th:fragment="delete">
-		<button type="submit" class="btn btn-danger btn-sm">削除</button>
-	</form>
 	
 	<!-- 戻るボタン -->
 		<div th:fragment="backButton">
@@ -32,6 +22,6 @@
 		<form th:action="@{/logout}" method="post" th:fragment="signout">
 			<input type="submit" class=" btn btn-outline-primary" value="サインアウト">
 		</form>
-	
+		
 </body>
 </html>

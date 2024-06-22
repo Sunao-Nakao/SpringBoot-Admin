@@ -87,7 +87,7 @@ public class ContactController {
 	     * @param id コンタクトID
 	     * @return コンタクト一覧画面へのリダイレクト
 	     */
-	    @PostMapping("/admin/contacts/{id}/delete/")
+	    @PostMapping("/admin/contacts/{id}/delete")
 	    public String delete(@PathVariable("id") Long id) {
 	        contactService.delete(id);
 	        return "redirect:/admin/contacts";
