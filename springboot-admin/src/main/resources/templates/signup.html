@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>管理者登録画面</title>
+	
+</head>
+<body>
+	<div th:insert="common/sourceList::sourceList"></div>
+	<div th:replace="common/messageIcon::messageIcon"></div>
+	<div class="container-fluid">
+		<h2>管理者登録</h2>
+		<div class="alert d-flex align-items-center" th:classappend="|${isError? 'alert-danger' : 'alert-primary'}|" role="alert" th:if="${message != null}">
+			<svg class="bi flex-shrink-0 me-2" width="24" height="24">
+				<use xlink:href="#exclamation-triangle-fill" th:if="${isError}"/>
+				<use xlink:href="#info-fill" th:unless="${isError}"/>
+			</svg>
+			<span th:text="${message}"></span>
+		</div>
+		<form th:action="@{/admin/signup}" method="post" th:object="${signupForm}">
+			<div class="form-group">
+				<div class="col-4 col-md-2 col-xxl-2">
+					<p><label for="lastName">姓：</label>
+					<input class="form-control" type="text" th:field="*{lastName}">
+				</div>
+				<span class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+				
+				<div class="col-4 col-md-2 col-xxl-2">
+					<p><label for="firstName">名：</label>
+					<input class="form-control" type="text" th:field="*{firstName}">
+				</div>
+				<span class="text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+						
+				<div class="col-4 col-md-2 col-xxl-2">
+					<p><label for="email">メールアドレス：</label>
+					<input class="form-control" type="text" th:field="*{email}">
+				</div>
+				<span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+						
+				<div class="col-4 col-md-2 col-xxl-2">
+					<p><label for="password">パスワード：</label>
+					<input class="form-control" type="text" th:field="*{password}">
+				</div>
+				<span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+						
+				<div>
+					<p><input class="btn btn-primary" type="submit" value="管理者登録">
+				</div>
+			</div>
+		</form>
+			<a th:href="@{/admin/signin}">▶︎ログイン画面へ戻る</a>
+	</div>	
+</body>
+</html>
+
+

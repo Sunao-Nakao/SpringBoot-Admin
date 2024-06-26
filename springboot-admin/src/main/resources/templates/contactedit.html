@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>お問い合わせ編集</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<form id="contactForm" th:action="@{|/admin/contacts/${contact.id}|}" method="post">	
+		<div class="container">
+			<hr>
+			<h2 class="my-2">お問い合わせ編集</h2>
+			<table class="table table-bordered table-striped">
+				<tr>
+					<th>お問い合わせID</th>
+					<td th:text="${contact.id}">ID</td>
+				</tr>
+				<tr>
+					<th>姓</th>
+					<td><input type="text" name="lastName" th:value="${contact.lastName}"></td>
+				</tr>
+				<tr>
+					<th>名</th>
+					<td><input type="text" name="firstName" th:value="${contact.firstName}"></td>
+				</tr>
+				<tr>
+					<th>メールアドレス</th>
+					<td><input type="text" name="email" th:value="${contact.email}"></td>
+				</tr>	
+				<tr>
+					<th>電話番号</th>
+					<td><input type="text" name="phone" th:value="${contact.phone}"></td>
+				</tr>	
+				<tr>
+					<th>郵便番号</th>
+					<td><input type="text" name="zipCode" th:value="${contact.zipCode}"></td>
+				</tr>	
+				<tr>							
+					<th>住所</th>
+					<td><input type="text" name="address" th:value="${contact.address}"></td>
+				</tr>	
+				<tr>							
+					<th>建物名</th>
+					<td><input type="text" name="buildingName" th:value="${contact.buildingName}"></td>
+				</tr>	
+				<tr>							
+					<th>お問い合わせ種別</th>
+					<td><input type="text" name="contactType" th:value="${contact.contactType}"></td>
+				</tr>	
+				<tr>							
+					<th>内容</th>
+					<td><input type="text" name="body" th:value="${contact.body}"></td>
+				</tr>	
+				<tr>
+					<th>作成日時</th>
+					<td th:text="${contact.createdAt}">Created At</td>
+				</tr>	
+				<tr>
+					<th>更新日時</th>
+					<td th:text="${contact.updatedAt}">Updated At</td>
+				</tr>	
+			</table>
+			
+			<div class="container">
+                <div class="row">
+                    <div class="col-1 col-lg-1">
+                        <div th:insert="common/sourceList::sourceList"></div>
+                        <button id="updateButton" class="btn btn-primary btn-sm">更新</button>
+                    </div>
+                    <div class="col-1 col-lg-1" >
+                        <div th:insert="common/sourceList::sourceList"></div>
+                        <button id="deleteButton" class="btn btn-danger btn-sm">削除</button>
+                    </div>
+                    <div class="col-9 col-lg-9"></div>
+                    <div class="d-flex justify-content-end col-1 col-lg-1">
+                        <div th:insert="common/sourceList::sourceList"></div>
+                        <div th:replace="common/buttonFragment::backContactId"></div>
+	                </div>
+                </div>
+            </div>
+        </div>
+	</form>
+	<div class="container">
+		<div class="d-flex justify-content-end my-5">
+			<div th:insert="common/sourceList::sourceList"></div>
+			<div th:replace="common/buttonFragment::signout"></div>
+		</div>
+	</div>	
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+	<script>
+	    $(document).ready(function() {
+	        $('#updateButton').click(function(event) {
+	            event.preventDefault();
+	            if (confirm('更新しますか？')) {
+	                $('#contactForm').submit();
+	            }
+	        });
+	    });
+	</script>
+	
+	<script th:inline="javascript">
+	    $(document).ready(function() {
+	        $('#deleteButton').click(function(event) {
+	            event.preventDefault();
+	            if (confirm('削除しますか？')) {
+	                var form = $('#contactForm');
+	                var deleteUrl = /*[[ @{/admin/contacts/{id}/delete(id=${contact.id})} ]]*/ '';
+	                deleteUrl = deleteUrl.replace('{id}', /*[[ ${contact.id} ]]*/ '');
+	                form.attr('action', deleteUrl);
+	                form.submit();
+	            }
+	        });
+	    });
+	</script>
+
+</body>
+</html>
